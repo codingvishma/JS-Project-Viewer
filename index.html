@@ -1,0 +1,478 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JS Project Viewer</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $( "#tabs" ).tabs();
+  } );
+  </script>
+</head>
+<body>
+ <h1>JavaScript Algorithms & Data Structures Project Viewer</h1>
+<div id="tabs">
+  <ul>
+    <li><a href="#tabs-1">PALINDROME CHECKER</a></li>
+    <li><a href="#tabs-2">ROMAN NUMERAL CONVERTER</a></li>
+    <li><a href="#tabs-3">CAESARS CIPHER</a></li>
+    <li><a href="#tabs-4">TELEPHONE NUMBER VALIDATOR</a></li>
+    <li><a href="#tabs-5">CASH REGISTER</a></li>
+  </ul>
+  <div class="tab" id="tabs-1">
+    <h3>Outline of Test Cases</h3>
+    <p>Return true if the given string is a palindrome. Otherwise, return false.
+<br>
+A palindrome is a word or sentence that's spelled the same way both forward and backward, ignoring punctuation, case, and spacing.
+<br>
+Note:
+You'll need to remove all non-alphanumeric characters (punctuation, spaces and symbols) and turn everything into the same case (lower or upper case) in order to check for palindromes.
+<br>
+We'll pass strings with varying formats, such as "racecar", "RaceCar", and "race CAR" among others.
+<br>
+We'll also pass strings with special symbols, such as "2A3*3a2", "2A3 3a2", and "2_A3*3#A2".</p>
+    <h3>Test Cases</h3>
+    <p>
+      <li>Palindrome("eye") should return a boolean.</li>
+      <li>Palindrome("eye") should return true.</li>
+      <li>Palindrome("_eye") should return true.</li>
+      <li>Palindrome("race car") should return true.</li>
+      <li>Palindrome("not a palindrome") should return false.</li>
+      <li>Palindrome("A man, a plan, a canal. Panama") should return true.</li>
+      <li>Palindrome("never odd or even") should return true.</li>
+      <li>Palindrome("nope") should return false.</li>
+      <li>Palindrome("almostomla") should return false.</li>
+      <li>Palindrome("My age is 0, 0 si ega ym.") should return true.</li>
+<li>Palindrome("1 eye for of 1 eye.") should return false.
+      <li>Palindrome("0_0 (: /-\ :) 0-0") should return true.</li>
+      <li>Palindrome("five|\_/|four") should return false.</li>
+    </p>
+    <h3>Code</h3>
+    <code>
+      function palindrome(str) <br>
+    { <br>
+        var myRegex = /[\W_]/g; <code class="comment">//match with any non-word character. <br>
+        <code>
+        str = str.toLowerCase(); <code class="comment">//put all in lower case<br>
+        <code>
+        str = str.replace(myRegex, ''); <code class="comment">//replace using myRegex<br>
+        <code>
+          for ( var i = 0; i < (str.length-1/2)/2; i++ ) <code class="comment">//for loop to find the center of str<br>
+          <code>
+        {<br>
+      if (str[i] !== str[str.length-1 - i]) <code class="comment">//if first half isn't equal to second half, its not a palindrome<br>
+      <code>
+            {<br>
+                return false;<br>
+            }<br>
+        }<br>
+        return true; <code class="comment">//true if first is the same as second half<br>
+        <code>
+    }<br>
+palindrome("eye");
+    </code>
+  </div>
+<div id="tabs-2">
+    <h3>Outline of Test Cases</h3>
+    <p>Convert the given number into a roman numeral.
+<br>
+All roman numerals answers should be provided in upper-case.</p>
+  <h3>Test Cases</h3>
+    <p>
+    <li>ConvertToRoman(2) should return "II".</li>
+      <li>ConvertToRoman(3) should return "III".</li>
+      <li>ConvertToRoman(4) should return "IV".</li>
+      <li>ConvertToRoman(5) should return "V".</li>
+      <li>ConvertToRoman(9) should return "IX".</li>
+      <li>ConvertToRoman(12) should return "XII".</li>
+      <li>ConvertToRoman(16) should return "XVI".</li>
+      <li>ConvertToRoman(29) should return "XXIX".</li>
+      <li>ConvertToRoman(44) should return "XLIV".</li>
+      <li>ConvertToRoman(45) should return "XLV".</li>
+      <li>ConvertToRoman(68) should return "LXVIII".</li>
+      <li>ConvertToRoman(83) should return "LXXXIII".</li>
+      <li>ConvertToRoman(97) should return "XCVII".</li>
+      <li>ConvertToRoman(99) should return "XCIX".</li>
+      <li>ConvertToRoman(400) should return "CD".</li>
+      <li>ConvertToRoman(500) should return "D".</li>
+      <li>ConvertToRoman(501) should return "DI".</li>
+      <li>ConvertToRoman(649) should return "DCXLIX".</li>
+      <li>ConvertToRoman(798) should return "DCCXCVIII".</li>
+      <li>ConvertToRoman(891) should return "DCCCXCI".</li>
+      <li>ConvertToRoman(1000) should return "M".</li>
+      <li>ConvertToRoman(1004) should return "MIV".</li>
+      <li>ConvertToRoman(1006) should return "MVI".</li>
+      <li>ConvertToRoman(1023) should return "MXXIII".</li>
+      <li>ConvertToRoman(2014) should return "MMXIV".</li>
+      <li>ConvertToRoman(3999) should return "MMMCMXCIX".</li>
+    </p>
+    <h3>Code</h3>
+    <code>
+      function convertToRoman(num) { <br>
+	var numbers = {1: "I", 2: "II", 3: "III",  4 : "IV", 5: "V", 6: "VI", 7 : "VII", 8 : "VIII", 9 : "IX", 
+10 : "X", 20 : "XX", 30 : "XXX", 40 : "XL", 50 : "L", 60 : "LX", 70 : "LXX", 80 : "LXXX", 90 : "XC", 
+100 : "C", 200 : "CC", 300 : "CCC", 400 : "CD", 500 : "D", 600 : "DC", 700 : "DCC", 800 : "DCCC", 900 : "CM", 
+1000: "M", 2000: "MM", 3000: "MMM"};<br>
+  var result = ''; <code class="comment">//initialise an empty result string<br>
+      <code>
+  var value = String(+num).split(""); <code class="comment">//create an empty array <br>
+        <code>
+  for(var i =0; i &lt;value.length; i++){<br>
+    var lookupKey = value[i]*Math.pow(10,(value.length-i)-1); <code class="comment">//using the lookup table to find the key of the current index value that's multiplied by power of 10^i  <br>
+          <code>
+    if(numbers[lookupKey]){ <br>
+      result +=  numbers[lookupKey];<br>
+    } <br>
+  } <br>
+  return result; <br>
+}
+    </code>
+  </div>
+  
+  
+  <div id="tabs-3">
+    <h3>Outline of Test Cases</h3>
+    <p>One of the simplest and most widely known ciphers is a Caesar cipher, also known as a shift cipher. In a shift cipher the meanings of the letters are shifted by some set amount.
+<br>
+A common modern use is the ROT13 cipher, where the values of the letters are shifted by 13 places. Thus 'A' ↔ 'N', 'B' ↔ 'O' and so on.
+<br>
+Write a function which takes a ROT13 encoded string as input and returns a decoded string.
+<br>
+All letters will be uppercase. Do not transform any non-alphabetic character (i.e. spaces, punctuation), but do pass them on.</p>
+    <h3>Test Cases</h3>
+    <p>
+      <li>
+        rot13("SERR PBQR PNZC") should decode to FREE CODE CAMP
+      </li>
+      <li>
+        rot13("SERR CVMMN!") should decode to FREE PIZZA!
+      </li>
+      <li>
+        rot13("SERR YBIR?") should decode to FREE LOVE?
+      </li>
+      <li>
+        rot13("GUR DHVPX OEBJA SBK WHZCF BIRE GUR YNML QBT.") should decode to THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG.
+      </li>
+    </p>
+    <h3>Code</h3>
+    <code>
+      function rot13(str) {
+  <code class="comment">//Create the alphabet array <br>
+  <code>
+    var alphabet = <br> ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'," ", "-", "_", ".", "&","?", "!", "/"];
+    <code class="comment">//Create the coded alphabet array <br>
+      <code>
+    var alphabetSwitch = <br>['N','O','P','Q','R','S','T','U','V','W','X','Y','Z','A','B','C','D','E','F','G','H','I','J','K','L','M', " ", "-", "_", ".", "&","?", "!", "/"];
+    <code class="comment">//Code to do the caesar cipher and switch the string for each letter found <br>
+      <code>
+    var caesarsCipher = []; <code class="comment">//Create an empty array for the output <br>
+        <code>
+    for(let i=0; i&lt;str.length; i++) { <code class="comment">//Create the for loop to iterate through all the strings in str<br>
+          <code>
+        for(let j=0; j&lt;alphabet.length; j++) {<code class="comment">//Create a loop to run through the alphabet array and then: <br>
+            <code>
+          if(str[i] === alphabet[j]) { <code class="comment">//if the input is the same as the letter in the alphabet array <br>
+              <code>
+                <br>
+          caesarsCipher.push(alphabetSwitch[j]); <code class="comment">//Then push the new switched string to the caesarsCipher array <br>
+                <code>
+          }<br>
+        }<br>
+    }<br>
+    return caesarsCipher.join(""); <code class="comment">//return the cipher<br>
+    <code>
+  };<br><br>
+
+  rot13("SERR CVMMN!");
+    </code>
+  </div>
+
+  
+  <div id="tabs-4">
+    <h3>Outline of Test Cases</h3>
+    <p>Return true if the passed string looks like a valid US phone number.
+<br>
+The user may fill out the form field any way they choose as long as it has the format of a valid US number. The following are examples of valid formats for US numbers (refer to the tests below for other variants):
+<br>
+555-555-5555<br>
+(555)555-5555<br>
+(555) 555-5555<br>
+555 555 5555<br>
+5555555555<br>
+1 555 555 5555<br>
+For this challenge you will be presented with a string such as 800-692-7753 or 8oo-six427676;laskdjf. Your job is to validate or reject the US phone number based on any combination of the formats provided above. The area code is required. If the country code is provided, you must confirm that the country code is 1. Return true if the string is a valid US phone number; otherwise return false.</p>
+    <h3>Test Cases</h3>
+    <p>
+      <li>
+        telephoneCheck("555-555-5555") should return a boolean.
+      </li>
+      <li>
+        telephoneCheck("1 555-555-5555") should return true.
+      </li>
+      <li>
+        telephoneCheck("1 (555) 555-5555") should return true.
+      </li>
+      <li>
+        telephoneCheck("5555555555") should return true.
+      </li>
+      <li>
+        telephoneCheck("555-555-5555") should return true.
+      </li>
+      <li>
+        telephoneCheck("(555)555-5555") should return true.
+      </li>
+      <li>
+        telephoneCheck("1(555)555-5555") should return true.
+      </li>
+      <li>
+        telephoneCheck("555-5555") should return false.
+      </li>
+      <li>
+        telephoneCheck("5555555") should return false.
+      </li>
+      <li>
+        telephoneCheck("1 555)555-5555") should return false.
+      </li>
+      <li>
+        telephoneCheck("1 555 555 5555") should return true.
+      </li>
+      <li>
+        telephoneCheck("1 456 789 4444") should return true.
+      </li>
+      <li>
+        telephoneCheck("123**&!!asdf#") should return false.
+      </li>
+      <li>
+        telephoneCheck("55555555") should return false.
+      </li>
+      <li>
+        telephoneCheck("(6054756961)") should return false.
+      </li>
+      <li>
+        telephoneCheck("2 (757) 622-7382") should return false.
+      </li>
+      <li>
+        telephoneCheck("0 (757) 622-7382") should return false.
+      </li>
+      <li>
+        telephoneCheck("-1 (757) 622-7382") should return false.
+      </li>
+      <li>
+        telephoneCheck("2 757 622-7382") should return false.
+      </li>
+      <li>
+        telephoneCheck("10 (757) 622-7382") should return false.
+      </li>
+      <li>
+        telephoneCheck("27576227382") should return false.
+      </li>
+      <li>
+        telephoneCheck("(275)76227382") should return false.
+      </li>
+      <li>
+        telephoneCheck("2(757)6227382") should return false.
+      </li>
+      <li>
+        telephoneCheck("2(757)622-7382") should return false.
+      </li>
+      <li>
+        telephoneCheck("555)-555-5555") should return false.
+      </li>
+      <li>
+        telephoneCheck("(555-555-5555") should return false.
+      </li>
+      <li>
+        telephoneCheck("(555)5(55?)-5555") should return false.
+      </li>
+    </p>
+    <h3>Code</h3>
+    <code>
+      function telephoneCheck(str) { 
+  <code class="comment">//Create a regex regular expression to validate number <br>
+ <code>
+   const myRegex = /^([+]?1[\s]?)?((?:[(](?:[2-9]1[02-9]|[2-9][02-8][0-9])[)][\s]?)|(?:(?:[2-9]1[02-9]|[2-9][02-8][0-9])[\s.-]?)){1}([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2}[\s.-]?){1}([0-9]{4}){1}$/; <br>
+  return myRegex.test(str); <code class="comment">//Return true ff myRegex passes the test <br>
+<code>
+} <br><br>
+
+telephoneCheck("555-555-5555");
+    </code>
+  </div>
+  
+  
+  <div id="tabs-5">
+    <h3>Outline of Test Cases</h3>
+    <p>Design a cash register drawer function checkCashRegister() that accepts purchase price as the first argument (price), payment as the second argument (cash), and cash-in-drawer (cid) as the third argument.
+<br>
+cid is a 2D array listing available currency.
+<br>
+The checkCashRegister() function should always return an object with a status key and a change key.
+<br>
+Return {status: "INSUFFICIENT_FUNDS", change: []} if cash-in-drawer is less than the change due, or if you cannot return the exact change.
+<br>
+Return {status: "CLOSED", change: [...]} with cash-in-drawer as the value for the key change if it is equal to the change due.
+<br>
+Otherwise, return {status: "OPEN", change: [...]}, with the change due in coins and bills, sorted in highest to lowest order, as the value of the change key.
+<br>
+Currency Unit	Amount<br>
+Penny	$0.01 (PENNY)<br>
+Nickel	$0.05 (NICKEL)<br>
+Dime	$0.1 (DIME)<br>
+Quarter	$0.25 (QUARTER)<br>
+Dollar	$1 (ONE)<br>
+Five Dollars	$5 (FIVE)<br>
+Ten Dollars	$10 (TEN)<br>
+Twenty Dollars	$20 (TWENTY)<br>
+One-hundred Dollars	$100 (ONE HUNDRED)<br>
+See below for an example of a cash-in-drawer array:
+<br>
+[<br>
+  ["PENNY", 1.01],<br>
+  ["NICKEL", 2.05],<br>
+  ["DIME", 3.1],<br>
+  ["QUARTER", 4.25],<br>
+  ["ONE", 90],<br>
+  ["FIVE", 55],<br>
+  ["TEN", 20],<br>
+  ["TWENTY", 60],<br>
+  ["ONE HUNDRED", 100]<br>
+]
+</p>
+    <h3>Test Cases</h3>
+    <p>
+      <li>
+        checkCashRegister(19.5, 20, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]) should return an object.
+      </li>
+      <li>
+        checkCashRegister(19.5, 20, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]) should return {status: "OPEN", change: [["QUARTER", 0.5]]}.
+      </li>
+      <li>
+        checkCashRegister(3.26, 100, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]) should return {status: "OPEN", change: [["TWENTY", 60], ["TEN", 20], ["FIVE", 15], ["ONE", 1], ["QUARTER", 0.5], ["DIME", 0.2], ["PENNY", 0.04]]}.
+      </li>
+      <li>
+        checkCashRegister(19.5, 20, [["PENNY", 0.01], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 0], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]) should return {status: "INSUFFICIENT_FUNDS", change: []}.
+      </li>
+      <li>
+        checkCashRegister(19.5, 20, [["PENNY", 0.01], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 1], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]) should return {status: "INSUFFICIENT_FUNDS", change: []}.
+      </li>
+      <li>
+        checkCashRegister(19.5, 20, [["PENNY", 0.5], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 0], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]) should return {status: "CLOSED", change: [["PENNY", 0.5], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 0], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]}.
+      </li>
+    </p>
+    <h3>Code</h3>
+    <code>
+      function checkCashRegister(price, cash, cid) {
+  <code class="comment">//create an object to show base currency unit values all in $ <br>
+  <code>
+    let cashValue = {  <br>
+    "PENNY": 0.01, "NICKEL": 0.05, "DIME": 0.1, "QUARTER": 0.25, "ONE": 1, "FIVE": 5, "TEN": 10, "TWENTY": 20, "ONE HUNDRED": 100} <br>
+  var change = cash - price; <code class="comment">//change due <br>
+    <code>
+  let due = { <br>
+    change: [], <code class="comment">//empty change array <br>
+      <code>
+    status: '' <code class="comment">//empty status string <br>
+        <code>
+  } <br><br>
+  
+  let cashTotal = 0; <code class="comment">//variable to hold total cash in register <br>
+          <code>
+  cid.forEach(element => { <code class="comment">//get the total cash in register <br>
+    <code>
+    cashTotal += element[1]; <code class="comment">//add the new total <br>
+    <code>
+    cashTotal = parseFloat(cashTotal.toFixed(2)) <code class="comment">//parse to have a fixed 2 decimal value <br>
+  <code>
+  }); <br><br>
+  
+  <code class="comment">//function to check if currency value can result in some change <br>
+  <code>
+    function valueOfCash(value, index) {  <code class="comment">//unit param-> reference valueOfCash obj and index param-> reference cid unit amount <br>
+    <code>
+    let valueTotal = cidr[index][1]; <code class="comment">//get currency value total from cid <br>
+      <code>
+    let amount = Math.floor(change / cashValue[value]) * cashValue[value]; <code class="comment">//check max possible amount that can be offset from change <br>
+        <code>
+    if (valueTotal &gt; 0) { <code class="comment">//check if some change can be paid from this value <br>
+        <code>
+      if (valueTotal &gt;= amount) { <code class="comment">//indicates there's enough valueTotal to offset max possible amount <br>
+        <code>
+        change -= amount; <code class="comment">//subtract amount taken from change <br>
+        <code>
+        change = parseFloat(change.toFixed(2)); <code class="comment">//parse to have a fixed 2 decimal value <br>
+          <code>
+        return amount; <code class="comment">//amount taken from this value <br>
+      <code>
+        } <br>
+      else { <br>
+        change -= parseFloat(valueTotal.toFixed(2)); <code class="comment">//subtract valueTotal from change since all values were used <br>
+        <code>
+        return valueTotal; <code class="comment">//amount taken from this value which == full valueTotal <br>
+        <code>
+      } <br>
+    }<br>
+    else { <code class="comment">//No change can be taken from this value<br>
+        <code>
+      return 0;<br>
+    }<br>
+  }<br>
+  let cidr = [...cid].reverse(); <code class="comment">//reverse the cash in drawer <br><br>
+   <code>
+  function getChange() { <code class="comment">//implement cashValue() for each case<br>
+    <code>
+    let changePayment = cash - price; <code class="comment">//full amount of change due<br>
+    <code>
+    let arr1 = []; <code class="comment">//arr1 to hold each change from currency value<br>
+    <code>
+     for (let [index, value] of cidr.entries())  {<br>
+      let moneyRecieved = valueOfCash(value[0], index);<br>
+      if (moneyRecieved &gt; 0) { <code class="comment">//add change amount gotten per value<br>
+     <code>
+        arr1.push([value[0], moneyRecieved]);<br>
+      }<br>
+      if (change === 0) {break;} <code class="comment">//break the loop if change is found<br>
+    <code>
+    }<br>
+    if (cashTotal &lt; changePayment || change !== 0) {<br>
+        due.status = "INSUFFICIENT_FUNDS"; <code class="comment">//show the status of the cid as insufficient funds since it's less than the change due, or can't return the exact change<br>
+    <code>
+    }<br>
+    else if (cashTotal == changePayment) {<br>
+        due.status = "CLOSED"; <code class="comment">//show the status of the cid as closed since it's equal to the change due<br>
+    <code>
+        due.change = [...cid];<br>
+    }<br>
+    else {<br>
+      due.status = "OPEN"; <code class="comment">//show the status of the cid as open and store the change due in coins and bills<br>
+      <code>
+      due.change = [...arr1]; <code class="comment">//get the change due from the temp array<br>
+       <code>
+    }<br>
+  }<br><br>
+  
+  getChange(); <code class="comment">//call the function to get the change <br>
+  <code>
+  return due; <code class="comment">//return the change due, sorted in highest to lowest order, as the value of the change key. <br>
+  <code>
+}<br>
+checkCashRegister(19.5, 20, [<br>
+  ["PENNY", 1.01],<br>
+  ["NICKEL", 2.05],<br>
+  ["DIME", 3.1],<br>
+  ["QUARTER", 4.25],<br>
+  ["ONE", 90],<br>
+  ["FIVE", 55],<br>
+  ["TEN", 20],<br>
+  ["TWENTY", 60],<br>
+  ["ONE HUNDRED", 100]<br>
+  ]);
+    </code>
+  </div>
+
+  </div>
+</body>
+</html>
